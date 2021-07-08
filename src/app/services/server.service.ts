@@ -66,10 +66,8 @@ export class ServerService implements OnDestroy{
   ];
 
   constructor(private route: ActivatedRoute) { 
-		this.cards = new BehaviorSubject<Card[]>(this.cardList);
+    this.cards = new BehaviorSubject<Card[]>(this.cardList);
     this.paramsSubscription = this.route.queryParams
-      .subscribe(params => {
-				this.paramsSubscription = this.route.queryParams
       .subscribe(params => {
         let cards = [ ...this.cardList ];
         if (params.sex === 'male' || params.sex === 'female'){
@@ -80,10 +78,10 @@ export class ServerService implements OnDestroy{
             card.name
               .toLowerCase()
               .includes(params.name.toLowerCase()))
-        		}
-        	this.cards.next(cards);
-      	});
-		});
+        }
+        this.cards.next(cards);
+      }
+    );
   }
 
 	getFilters(): Filter[]{
