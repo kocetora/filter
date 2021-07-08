@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Filter } from './interfaces/filter';
 
 @Component({
@@ -22,6 +23,8 @@ export class AppComponent {
   ];
 
   constructor(
+    private router: Router,
+    private activatedRoute: ActivatedRoute
   ) {
     const group: { [key: string]: FormControl } = {};
     this.filters.forEach((input) => {
@@ -31,6 +34,14 @@ export class AppComponent {
   }
 
   onSubmit() {
-    console.log(this.filter.value);
+    this.router.navigate([], {
+      relativeTo: this.activatedRoute,
+      queryParams: this.filter.value,
+    });
+  }
+
+  reset() {
+    this.filter.reset({ name: '', sex: 'both' });
+    this.onSubmit();
   }
 }
