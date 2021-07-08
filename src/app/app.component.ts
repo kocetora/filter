@@ -2,30 +2,23 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Filter } from './interfaces/filter';
+import { ServerService } from './services/server.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
+  providers: [ServerService]
 })
 export class AppComponent {
   filter: FormGroup;
-  filters: Filter[] = [
-    {
-      type: 'select',
-      title: 'sex',
-      options: ['both', 'female', 'male'],
-    },
-    {
-      type: 'text',
-      placeholder: 'enter search phrase',
-      title: 'name',
-    },
-  ];
+  filters: Filter[];
 
   constructor(
     private router: Router,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private serverService: ServerService
   ) {
+    this.filters = this.serverService.getFilters();
     const group: { [key: string]: FormControl } = {};
     this.filters.forEach((input) => {
       group[input.title] = new FormControl('');

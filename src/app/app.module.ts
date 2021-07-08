@@ -4,6 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { CardComponent } from './card/card.component';
+import { ServerService } from './services/server.service';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,7 @@ import { CardComponent } from './card/card.component';
     ReactiveFormsModule,
     RouterModule.forRoot([]),
   ],
-  providers: [],
+  providers: [ServerService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
