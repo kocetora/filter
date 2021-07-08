@@ -1,20 +1,22 @@
 <form [formGroup]="filter" (ngSubmit)="onSubmit()">
-    <div *ngFor="let fltr of filters">
-      <div>
-        {{ fltr.title | titlecase }}
-        <input
-          *ngIf="fltr.type === 'text'"
-          type="text"
-          placeholder="{{ fltr.placeholder }}"
-          formControlName="{{ fltr.title }}"
-        />
-        <select *ngIf="fltr.type === 'select'" formControlName="{{ fltr.title }}">
-          <option *ngFor="let opt of fltr.options">
-            {{ opt }}
-          </option>
-        </select>
-      </div>
+  <div *ngFor="let fltr of filters">
+    <div>
+      {{ fltr.title | titlecase }}
+      <input
+        *ngIf="fltr.type === 'text'"
+        type="text"
+        placeholder="{{ fltr.placeholder }}"
+        formControlName="{{ fltr.title }}"
+      />
+      <select *ngIf="fltr.type === 'select'" formControlName="{{ fltr.title }}">
+        <option *ngFor="let opt of fltr.options">
+          {{ opt }}
+        </option>
+      </select>
     </div>
-    <input type="submit" value="Search" />
-    <button onclick="reset()">Reset</button>
-  </form>
+  </div>
+  <input type="submit" value="Search" />
+  <button onclick="reset()">Reset</button>
+</form>
+
+<app-card *ngFor="let card of cards" [card]=card></app-card>
