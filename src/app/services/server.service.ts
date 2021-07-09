@@ -6,10 +6,10 @@ import { Filter } from '../interfaces/filter';
 
 @Injectable()
 export class ServerService implements OnDestroy{
-  paramsSubscription: Subscription;
-	cards: BehaviorSubject<Card[]>;
+  private paramsSubscription: Subscription;
+	private cards: BehaviorSubject<Card[]>;
 
-	cardList: Card[] = [
+	private cardList: Card[] = [
     {
       name: "Adriana",
       sex: "female",
@@ -52,7 +52,7 @@ export class ServerService implements OnDestroy{
     },
   ]
 
-	filters: Filter[] = [
+	private filters: Filter[] = [
     {
       type: 'select',
       title: 'sex',

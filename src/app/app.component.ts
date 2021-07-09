@@ -12,10 +12,10 @@ import { Card } from './interfaces/card';
   providers: [ServerService]
 })
 export class AppComponent implements OnInit{
-  filter: FormGroup;
-  filters: Filter[];
-  cards!: Card[];
-  cardsSubscription!: Subscription;
+  readonly filter: FormGroup;
+  readonly filters: Filter[];
+  private cardsSubscription!: Subscription;
+  cards: Card[] = [];
 
   constructor(
     private router: Router,
@@ -38,6 +38,11 @@ export class AppComponent implements OnInit{
   }
 
   onSubmit() {
+    for (var key in this.filter.value) {
+      if (!this.filter.value[key]) {
+        delete this.filter.value[key];
+      }
+    }
     this.router.navigate([], {
       relativeTo: this.activatedRoute,
       queryParams: this.filter.value,
