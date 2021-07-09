@@ -6,7 +6,6 @@ import { Filter } from './filter/interfaces/filter';
 import { FilterValue } from './filter/interfaces/filterValue';
 import { Card } from './interfaces/card';
 
-
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',

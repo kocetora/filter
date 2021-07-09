@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { FilterComponent } from './filter.component';
 
 @NgModule({
@@ -8,7 +8,6 @@ import { FilterComponent } from './filter.component';
     FilterComponent
   ],
   imports: [
-    FormsModule,
     ReactiveFormsModule,
     CommonModule
   ],
