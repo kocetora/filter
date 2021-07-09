@@ -1,6 +1,7 @@
 interface Input {
-  type: string;
+  type: string,
   title: string,
+  default: string
 }
 
 interface Text extends Input {
@@ -9,7 +10,7 @@ interface Text extends Input {
 }
 
 interface Select extends Input {
-  type: 'select'
+  type: 'select',
   options: string[]
 }
   

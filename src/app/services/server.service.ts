@@ -2,7 +2,7 @@ import { Injectable, OnDestroy } from "@angular/core";
 import { ActivatedRoute } from '@angular/router';
 import { BehaviorSubject, Observable, Subscription } from "rxjs";
 import { Card } from "../interfaces/card";
-import { Filter } from '../interfaces/filter';
+import { Filter } from '../filter/interfaces/filter';
 
 @Injectable()
 export class ServerService implements OnDestroy{
@@ -57,11 +57,13 @@ export class ServerService implements OnDestroy{
       type: 'select',
       title: 'sex',
       options: ['both', 'female', 'male'],
+      default: 'both'
     },
     {
       type: 'text',
       placeholder: 'enter search phrase',
       title: 'name',
+      default: ''
     },
   ];
 
@@ -70,7 +72,7 @@ export class ServerService implements OnDestroy{
     this.paramsSubscription = this.route.queryParams
       .subscribe(params => {
         let cards = [ ...this.cardList ];
-        if (params.sex === 'male' || params.sex === 'female'){
+        if (params.sex){
           cards = cards.filter(card => card.sex === params.sex)
         }
         if(params.name){
